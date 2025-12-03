@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>لوحة التحكم – SNOW LIWA Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/admin.css" />
+</head>
+
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="logo-title">SNOW LIWA</div>
+            <div class="subtitle">لوحة التحكم · Dashboard</div>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Bookings</div>
+                <div class="kpi-value">{{ total_bookings }}</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Total Tickets</div>
+                <div class="kpi-value">{{ total_tickets }}</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Total Amount (AED)</div>
+                <div class="kpi-value">{{ "%.0f"|format(total_amount) }}</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Paid (AED)</div>
+                <div class="kpi-value kpi-success">{{ "%.0f"|format(total_paid) }}</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Pending (AED)</div>
+                <div class="kpi-value kpi-warning">{{ "%.0f"|format(total_pending) }}</div>
+            </div>
+        </div>
+
+        <div class="action-bar">
+            <form action="/admin/sync" method="post">
+                <button type="submit" class="btn btn-primary">🔄 Sync payment status from Ziina</button>
+            </form>
+            <a href="/admin/settings" class="btn btn-outline">⚙️ Settings</a>
+        </div>
+
+        <section class="bookings-section">
+            <h2>Last 25 Bookings</h2>
+            <div class="table-wrapper">
+                <table class="bookings-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Created</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Tickets</th>
+                            <th>Amount (AED)</th>
+                            <th>Status</th>
+                            <th>Payment Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.booking_id }}</td>
+                            <td>{{ booking.created_at }}</td>
+                            <td>{{ booking.name }}</td>
+                            <td>{{ booking.phone }}</td>
+                            <td>{{ booking.tickets }}</td>
+                            <td>{{ "%.2f"|format(booking.total_amount) }}</td>
+                            <td>
+                                <span class="status-badge status-{{ booking.status }}">{{ booking.status }}</span>
+                            </td>
+                            <td>{{ booking.payment_status or "—" }}</td>
+                            <td>
+                                {% if booking.status == "paid" %}
+                                <a href="/ticket/{{ booking.booking_id }}" target="_blank" class="ticket-link">🎟️
+                                    Ticket</a>
+                                {% else %}
+                                —
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="admin-footer">
+            <a href="/">Back to public site</a>
+        </footer>
+    </div>
+</body>
+
+</html>

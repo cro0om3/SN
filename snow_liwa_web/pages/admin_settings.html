@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>إعدادات – SNOW LIWA Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/admin.css" />
+</head>
+
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="logo-title">SNOW LIWA</div>
+            <div class="subtitle">إعدادات التطبيق · Settings</div>
+        </header>
+
+        {% if request.query_params.get('saved') %}
+        <div class="alert alert-success">تم حفظ الإعدادات بنجاح! / Settings saved.</div>
+        {% endif %}
+
+        <form action="/admin/settings" method="post" class="settings-form">
+            <section class="form-section">
+                <h2>Ticket Settings</h2>
+                <div class="form-field">
+                    <label for="ticket_price">Ticket Price (AED)</label>
+                    <input type="number" id="ticket_price" name="ticket_price"
+                        value="{{ settings.get('ticket_price', 175) }}" />
+                </div>
+                <div class="form-field">
+                    <label for="ticket_currency">Currency</label>
+                    <input type="text" id="ticket_currency" name="ticket_currency"
+                        value="{{ settings.get('ticket_currency', 'AED') }}" />
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Content Settings</h2>
+                <div class="form-field">
+                    <label for="hero_subtitle">Hero Subtitle (Arabic)</label>
+                    <input type="text" id="hero_subtitle" name="hero_subtitle"
+                        value="{{ settings.get('hero_subtitle', 'تجربة شتوية في قلب الظفرة') }}" />
+                </div>
+                <div class="form-field">
+                    <label for="working_days">Working Days Badge</label>
+                    <input type="text" id="working_days" name="working_days"
+                        value="{{ settings.get('working_days', 'كل أيام الأسبوع') }}" />
+                </div>
+                <div class="form-field">
+                    <label for="working_hours">Working Hours Badge</label>
+                    <input type="text" id="working_hours" name="working_hours"
+                        value="{{ settings.get('working_hours', '4:00pm - 12:00am') }}" />
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>WhatsApp Settings</h2>
+                <div class="form-field">
+                    <label for="whatsapp_phone">WhatsApp Phone (no +)</label>
+                    <input type="text" id="whatsapp_phone" name="whatsapp_phone"
+                        value="{{ settings.get('whatsapp_phone', '971501234567') }}" />
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">💾 حفظ الإعدادات / Save Settings</button>
+                <a href="/admin/dashboard" class="btn btn-outline">Cancel</a>
+            </div>
+        </form>
+
+        <footer class="admin-footer">
+            <a href="/admin/dashboard">Back to dashboard</a>
+        </footer>
+    </div>
+</body>
+
+</html>
