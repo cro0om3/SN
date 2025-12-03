@@ -1,0 +1,278 @@
+/* Admin Dashboard CSS */
+:root {
+    --color-bg: #f5fbff;
+    --color-bg-soft: #ffffff;
+    --color-accent: #4dafff;
+    --color-accent-soft: #ffcf70;
+    --color-text-main: #163046;
+    --color-text-muted: #6b7b8c;
+    --color-success: #10b981;
+    --color-danger: #ff4b6b;
+    --color-warning: #f59e0b;
+    --radius-lg: 18px;
+    --shadow-soft: 0 14px 40px rgba(7, 36, 63, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Kufi Arabic", "Nunito", system-ui, sans-serif;
+    background: radial-gradient(circle at top right, #ffffff, #f3f7ff 55%, #ffe9c3 120%);
+    color: var(--color-text-main);
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.admin-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+}
+
+.kpi-label {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+}
+
+.kpi-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--color-text-main);
+}
+
+.kpi-success {
+    color: var(--color-success);
+}
+
+.kpi-warning {
+    color: var(--color-warning);
+}
+
+.action-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ffcf70, #f7b343);
+    color: #2b1b05;
+    box-shadow: 0 10px 26px rgba(211, 151, 49, 0.55);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: var(--color-text-main);
+    box-shadow: 0 6px 16px rgba(7, 36, 63, 0.12);
+}
+
+.btn-outline:hover {
+    background: #ffffff;
+}
+
+.bookings-section {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.bookings-section h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.bookings-table th,
+.bookings-table td {
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid #e4edf5;
+}
+
+.bookings-table th {
+    background: #f8fbff;
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-paid {
+    background: #d1fae5;
+    color: var(--color-success);
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: var(--color-warning);
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: var(--color-danger);
+}
+
+.admin-footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+.admin-footer a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+/* Settings Form */
+.settings-form {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+}
+
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-section h2 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.form-field {
+    margin-bottom: 16px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    font-family: inherit;
+    font-size: 13px;
+    background: #f8fbff;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: #ffffff;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.alert-success {
+    background: #d1fae5;
+    color: var(--color-success);
+    border: 1px solid var(--color-success);
+}
+
+.ticket-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.ticket-link:hover {
+    background: rgba(77, 175, 255, 0.1);
+}
